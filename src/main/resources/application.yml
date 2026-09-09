@@ -10,5 +10,5 @@ spring:
 
 logging:
   level:
-    liquibase: DEBUG
-    org.springframework.boot.autoconfigure.liquibase: DEBUG
+    liquibase: INFO
+    org.springframework.boot.autoconfigure.liquibase: INFO
