@@ -1,0 +1,100 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 008-create-showtimes
+      author: sakusan
+
+      createTable:
+        tableName: showtimes
+
+        columns:
+          - column:
+              name: showtime_id
+              type: BIGINT
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+
+          - column:
+              name: movie_id
+              type: BIGINT
+              constraints:
+                nullable: false
+
+          - column:
+              name: screen_id
+              type: BIGINT
+              constraints:
+                nullable: false
+
+          - column:
+                name: base_price
+                type: NUMERIC(10,2)
+                constraints:
+                    nullable: false
+
+          - column:
+              name: starts_at
+              type: TIMESTAMP WITH TIME ZONE
+              constraints:
+                nullable: false
+
+          - column:
+              name: ends_at
+              type: TIMESTAMP WITH TIME ZONE
+              constraints:
+                nullable: false
+
+          - column:
+              name: status
+              type: VARCHAR(30)
+              defaultValue: "SCHEDULED"
+              constraints:
+                nullable: false
+
+          - column:
+              name: created_at
+              type: TIMESTAMP WITH TIME ZONE
+              defaultValueDate: CURRENT_TIMESTAMP
+              constraints:
+                nullable: false
+
+          - column:
+              name: updated_at
+              type: TIMESTAMP WITH TIME ZONE
+              defaultValueDate: CURRENT_TIMESTAMP
+              constraints:
+                nullable: false
+  - changeSet:
+      id: 009-add-constraints-showtimes
+      author: sakusan
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: showtimes
+            baseColumnNames: movie_id
+            referencedTableName: movies
+            referencedColumnNames: movie_id
+            constraintName: fk_showtimes_movie
+
+        - addForeignKeyConstraint:
+            baseTableName: showtimes
+            baseColumnNames: screen_id
+            referencedTableName: screens
+            referencedColumnNames: screen_id
+            constraintName: fk_showtimes_screen
+
+        - createIndex:
+            tableName: showtimes
+            indexName: idx_showtimes_movie
+            columns:
+              - column:
+                  name: movie_id
+        - createIndex:
+            tableName: showtimes
+            indexName: idx_showtimes_screen_start
+            columns:
+              - column:
+                  name: screen_id
+              - column:
+                  name: starts_at

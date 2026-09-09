@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/001-create-movies.yaml
+  - include:
+      file: db/changelog/changes/002-create-cinemas.yaml
+  - include:
+      file: db/changelog/changes/003-create-screens.yaml
+  - include:
+        file: db/changelog/changes/004-create-seats.yaml
+  - include:
+        file: db/changelog/changes/005-create-showtimes.yaml
+  - include:
+        file: db/changelog/changes/006-create-customers.yaml
+  - include:
+        file: db/changelog/changes/007-create-bookings.yaml
+  - include:
+        file: db/changelog/changes/008-create-bookings-seats.yaml

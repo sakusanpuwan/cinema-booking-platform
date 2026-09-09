@@ -1,0 +1,85 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 006-create-seats
+      author: sakusan
+
+      createTable:
+        tableName: seats
+
+        columns:
+          - column:
+              name: seat_id
+              type: BIGINT
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+
+          - column:
+              name: screen_id
+              type: BIGINT
+              constraints:
+                nullable: false
+
+          - column:
+              name: row_label
+              type: VARCHAR(5)
+              constraints:
+                nullable: false
+
+          - column:
+              name: seat_number
+              type: SMALLINT
+              constraints:
+                nullable: false
+
+          - column:
+              name: seat_type
+              type: VARCHAR(30)
+              defaultValue: "STANDARD"
+              constraints:
+                nullable: false
+
+          - column:
+              name: active
+              type: BOOLEAN
+              defaultValueBoolean: true
+              constraints:
+                nullable: false
+
+          - column:
+              name: created_at
+              type: TIMESTAMP WITH TIME ZONE
+              defaultValueDate: CURRENT_TIMESTAMP
+              constraints:
+                nullable: false
+
+          - column:
+              name: updated_at
+              type: TIMESTAMP WITH TIME ZONE
+              defaultValueDate: CURRENT_TIMESTAMP
+              constraints:
+                nullable: false
+  - changeSet:
+      id: 007-add-constraints-seats
+      author: sakusan
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: seats
+            baseColumnNames: screen_id
+            referencedTableName: screens
+            referencedColumnNames: screen_id
+            constraintName: fk_seats_screen
+
+        - addUniqueConstraint:
+            tableName: seats
+            columnNames: screen_id, row_label, seat_number
+            constraintName: uk_seat_screen_position
+
+        - createIndex:
+            tableName: seats
+            indexName: idx_seats_screen_id
+            columns:
+              - column:
+                  name: screen_id

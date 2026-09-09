@@ -1,0 +1,96 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 014-create-bookings-seats
+      author: sakusan
+
+      createTable:
+        tableName: booking_seats
+        columns:
+
+          - column:
+              name: booking_seat_id
+              type: BIGINT
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                nullable: false
+
+          - column:
+              name: booking_id
+              type: BIGINT
+              constraints:
+                nullable: false
+
+          - column:
+              name: showtime_id
+              type: BIGINT
+              constraints:
+                nullable: false
+
+          - column:
+              name: seat_id
+              type: BIGINT
+              constraints:
+                nullable: false
+
+          - column:
+              name: price
+              type: NUMERIC(10,2)
+              constraints:
+                nullable: false
+
+          - column:
+              name: created_at
+              type: TIMESTAMP WITH TIME ZONE
+              defaultValueDate: CURRENT_TIMESTAMP
+              constraints:
+                nullable: false
+  - changeSet:
+      id: 015-add-constraints-bookings-seats
+      author: sakusan
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: booking_seats
+            baseColumnNames: booking_id
+            referencedTableName: bookings
+            referencedColumnNames: booking_id
+            constraintName: fk_booking_seats_booking
+
+        - addForeignKeyConstraint:
+            baseTableName: booking_seats
+            baseColumnNames: showtime_id
+            referencedTableName: showtimes
+            referencedColumnNames: showtime_id
+            constraintName: fk_booking_seats_showtime
+
+        - addForeignKeyConstraint:
+            baseTableName: booking_seats
+            baseColumnNames: seat_id
+            referencedTableName: seats
+            referencedColumnNames: seat_id
+            constraintName: fk_booking_seats_seat
+
+        - addUniqueConstraint:
+            tableName: booking_seats
+            columnNames: showtime_id, seat_id
+            constraintName: uk_booking_seats_showtime_seat
+
+        - addUniqueConstraint:
+            tableName: booking_seats
+            columnNames: booking_id, seat_id
+            constraintName: uk_booking_seats_booking_seat
+
+        - createIndex:
+            tableName: booking_seats
+            indexName: idx_booking_seats_booking
+            columns:
+              - column:
+                  name: booking_id
+
+        - createIndex:
+            tableName: booking_seats
+            indexName: idx_booking_seats_seat
+            columns:
+              - column:
+                  name: seat_id
