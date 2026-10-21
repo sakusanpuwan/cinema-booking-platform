@@ -2,7 +2,8 @@ package com.example.cinema.dto;
 
 import com.example.cinema.enums.BookingStatus;
 import com.example.cinema.enums.SeatStatus;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter

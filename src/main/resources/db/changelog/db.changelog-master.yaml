@@ -19,3 +19,5 @@ databaseChangeLog:
       file: db/changelog/changes/009-insert-cinema-data.yaml
   - include:
       file: db/changelog/changes/010-insert-customer-data.yaml
+  - include:
+      file: db/changelog/changes/011-update-id-data.yaml

@@ -1,0 +1,12 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 018-update-id-data
+      author: sakusan
+
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/update-ids.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true
