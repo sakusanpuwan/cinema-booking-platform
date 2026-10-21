@@ -15,3 +15,7 @@ databaseChangeLog:
         file: db/changelog/changes/007-create-bookings.yaml
   - include:
         file: db/changelog/changes/008-create-bookings-seats.yaml
+  - include:
+      file: db/changelog/changes/009-insert-cinema-data.yaml
+  - include:
+      file: db/changelog/changes/010-insert-customer-data.yaml

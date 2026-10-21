@@ -1,0 +1,22 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 017-seed-customer-data
+      author: sakusan
+
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/seed-customers.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true
+        - sqlFile:
+            path: db/changelog/sql/seed-bookings.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true
+        - sqlFile:
+            path: db/changelog/sql/seed-bookings-seats.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true

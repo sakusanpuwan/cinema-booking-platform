@@ -1,0 +1,27 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 016-seed-cinema-data
+      author: sakusan
+
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/seed-cinemas.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true
+        - sqlFile:
+            path: db/changelog/sql/seed-screens.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true
+        - sqlFile:
+            path: db/changelog/sql/seed-seats.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true
+        - sqlFile:
+            path: db/changelog/sql/seed-showtimes.sql
+            relativeToChangelogFile: false
+            splitStatements: true
+            stripComments: true

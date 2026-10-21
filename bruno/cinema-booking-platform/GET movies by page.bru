@@ -1,0 +1,16 @@
+meta {
+  name: GET movies by page
+  type: http
+  seq: 5
+}
+
+get {
+  url: http:localhost:8080/movies/sort/page/0?filter=imdbRating&dir=ASC
+  body: none
+  auth: inherit
+}
+
+params:query {
+  filter: imdbRating
+  dir: ASC
+}

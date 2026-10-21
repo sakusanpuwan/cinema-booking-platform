@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class MovieDto {
-    private String posterLink;
     private String title;
     private Short releasedYear;
     private String certificate;
@@ -27,11 +26,12 @@ public class MovieDto {
     private String star4;
     private Integer noOfVotes;
     private BigDecimal gross;
+    private String posterLink;
+
 
     public static MovieDto getMovieDto(Movie movie) {
         return MovieDto.builder()
                 .title(movie.getTitle())
-                .posterLink(movie.getPosterLink())
                 .releasedYear(movie.getReleasedYear())
                 .certificate(movie.getCertificate())
                 .runtimeMinutes(movie.getRuntimeMinutes())
@@ -46,6 +46,7 @@ public class MovieDto {
                 .star4(movie.getStar4())
                 .noOfVotes(movie.getNoOfVotes())
                 .gross(movie.getGross())
+                .posterLink(movie.getPosterLink())
                 .build();
     }
 }
